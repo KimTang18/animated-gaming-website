@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animated Mobile Game Website Design</title>
+	<!-- <link rel="stylesheet" href="style.css" /> -->
+	<link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet" />
+	<style>
+		* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-image: linear-gradient(to right, #11253b 20%, #92f9fc 180%);
+}
+
+section {
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	padding: 100px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	overflow-x: hidden;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 40px 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 1000;
+}
+
+header .valorant {
+	position: relative;
+	display: inline-block;
+	width: 170px;
+	opacity: 0;
+	animation: slide_left 0.5s linear forwards;
+	animation-delay: 0.2s;
+}
+
+@keyframes slide_left {
+	0% {
+		transform: translateX(-100px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}
+
+header ul li {
+	list-style: none;
+}
+
+header ul li a {
+	display: inline-block;
+	color: #92f8f9;
+	font-weight: 600;
+	font-size: 1.2em;
+	font-family: 'Nunito Sans', sans-serif;
+	display: inline-block;
+	padding: 8px 50px;
+	margin-bottom: 30px;
+	text-decoration: none;
+	user-select: none;
+	opacity: 0;
+	animation: slide_top 0.5s linear forwards;
+	animation-delay: calc(0.2s * var(--i));
+}
+
+@keyframes slide_top {
+	0% {
+		transform: translateY(100px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+header ul li a.active,
+header ul li a:hover {
+	background: #0169b2;
+	color: #fff;
+	border-radius: 10px;
+	box-shadow: 0px 4px 3px 0px #2181fc;
+}
+
+.TopMenu-BTN {
+	width: 40px;
+	height: 40px;
+	font-size: 30px;
+	cursor: pointer;
+	z-index: 1000;
+	border-radius: 2px;
+	background-image: url(img/menuline.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	filter: invert(1);
+	opacity: 0;
+	animation: slide_right 0.5s linear forwards;
+	animation-delay: 1s;
+}
+
+.TopMenu-BTN.active {
+	background: url(img/close.png);
+	font-size: 30px;
+	filter: invert(1);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.navigation {
+	display: none;
+}
+
+.navigation.active {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url(img/wall.png);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.content {
+	position: relative;
+	display: flex;
+}
+
+.content .textBox {
+	position: relative;
+	max-width: 620px;
+}
+
+.content .textBox h2 {
+	color: #92f9fa;
+	font-size: 2.5em;
+	margin-bottom: 10px;
+	line-height: 1.2em;
+	font-weight: 700;
+	font-family: 'Paytone One', sans-serif;
+	opacity: 0;
+	animation: slide_right 0.5s linear forwards;
+	animation-delay: 0.2s;
+}
+
+@keyframes slide_right {
+	0% {
+		transform: translateX(100px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}
+
+.content .textBox p {
+	font-size: 1.2em;
+	color: #92f9fa;
+	font-family: 'Nunito Sans', sans-serif;
+	margin: 30px 0 30px 0;
+	opacity: 0;
+	animation: slide_left 0.5s linear forwards;
+	animation-delay: 1.75s;
+}
+
+.content .textBox a {
+	display: inline-block;
+	padding: 15px 30px;
+	background: #0169b2;
+	color: #fff;
+	font-size: 1.2em;
+	font-family: 'Nunito Sans', sans-serif;
+	border-radius: 10px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-decoration: none;
+	box-shadow: 0px 4px 3px 0px #2181fc;
+	opacity: 0;
+	animation: slide_top 0.5s linear forwards;
+	animation-delay: 2s;
+}
+
+.content .textBox a:hover {
+	background: #033a63;
+}
+
+.social {
+	position: absolute;
+	bottom: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.social li {
+	list-style: none;
+}
+
+.social li a {
+	position: relative;
+	display: inline-block;
+	margin-right: 15px;
+	width: 50px;
+	height: 50px;
+	background: #0169b2;
+	display: flex;
+	border-radius: 10px;
+	box-shadow: 0px 4px 3px 0px #2181fc;
+	justify-content: center;
+	align-items: center;
+	transition: 0.2s ease-in-out;
+	opacity: 0;
+	animation: slide_right 0.5s linear forwards;
+	animation-delay: calc(0.2s * var(--i));
+}
+
+.social li a img {
+	filter: invert(1);
+	transform: scale(0.5);
+	width: 50px;
+}
+
+.social li a:hover {
+	background: #033a63;
+}
+
+.valo {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	max-width: 400px;
+	opacity: 0;
+	animation: fade_in 1s linear forwards;
+	animation-delay: 3.5s;
+}
+
+@keyframes fade_in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Responsive Code */
+@media (min-width: 1440px) {
+	.valo {
+		right: 90px;
+	}
+}
+
+@media (max-width:991px) {
+	section {
+		padding: 50px 80px;
+		min-height: 95vh
+	}
+
+	header {
+		padding: 60px 80px;
+	}
+
+	header ul li {
+		margin: 10px 0;
+	}
+
+	header ul li a {
+		margin-left: 0;
+	}
+
+	header .valorant {
+		width: 280px
+	}
+
+	.TopMenu-BTN {
+		width: 80px;
+		height: 80px;
+	}
+
+	header ul li a {
+		font-size: 2.8em;
+	}
+
+	.content .textBox {
+		max-width: 90%;
+	}
+
+	.content .textBox h2 {
+		font-size: 3.5em;
+	}
+
+	.content .textBox p {
+		font-size: 1.5em;
+	}
+
+	.content .textBox a {
+		padding: 23px 50px;
+		font-size: 2em;
+	}
+
+	.social {
+		position: relative;
+		display: block;
+		bottom: 190px;
+	}
+
+	.social li {
+		margin-bottom: 60px;
+	}
+
+	.social li a img {
+		width: 90px;
+	}
+
+	.content {
+		position: relative;
+		display: flex;
+		bottom: 190px;
+	}
+
+	.social li a {
+		width: 90px;
+		height: 90px;
+	}
+
+	.valo {
+		transform: scaleX(-1);
+		margin: 0 auto;
+		left: 0;
+	}
+}
+
+@media (max-width:600px) {
+	.valo {
+		opacity: 0.4 !important
+	}
+}
+	</style>
+</head>
+<body>
+
+<section>
+	<!-- Right Side Electro Dragon Image Code -->
+	<img src="img/valo2.png" class="valo" />
+	
+	<!-- Header Code -->
+	<header>
+		<!-- Logo Code -->
+		<img src="img/Daco_4489723.png" class="valorant">
+		
+		<!-- Header Nav Menu Button Code -->
+		<div class="TopMenu-BTN"></div>
+		
+		<!-- Header Nav Menu Code -->
+		<ul class="navigation">
+			<li><a href="#" style="--i:1;" class="active">Home</a></li>
+			<li><a href="#" style="--i:2;">About</a></li>
+			<li><a href="#" style="--i:3;">Services</a></li>
+			<li><a href="#" style="--i:4;">Pricing</a></li>
+			<li><a href="#" style="--i:5;">Contact</a></li>
+		</ul>
+	</header>
+	
+	<!-- Content Code -->
+	<div class="content">
+		<div class="textBox">
+			<!-- Title Code -->
+			<h2>Valorant</h2>
+			
+			<!-- Description Code -->
+			<p> Valorant Website UI Design Using HTML CSS & javaScript. Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin.</p>
+			
+			<!-- Read More Button Code -->
+			<a href="#">Read More</a>
+		</div>
+	</div>
+	
+	<!-- Social Icon Code -->
+	<ul class="social">
+		<li><a href="#" style="--i:12;"><img src="img/facebook.png"></a></li>
+		<li><a href="#" style="--i:13;"><img src="img/insta.png"></a></li>
+		<li><a href="#" style="--i:14;"><img src="img/tweet.png"></a></li>
+	</ul>
+	
+</section>
+
+<script>
+// Toggle Button Clickable Add OR Remove Class Script Code
+
+	// Header Nav Menu Button Clickable Script
+	let BTNtoggle = document.querySelector('.TopMenu-BTN');
+		BTNtoggle?.addEventListener('click', () => {
+		document.querySelector('.TopMenu-BTN').classList.toggle('active');
+	});
+
+	// Header Nav Menu Script
+	let Navtoggle = document.querySelector('.TopMenu-BTN');
+		Navtoggle?.addEventListener('click', () => {
+		document.querySelector('.navigation').classList.toggle('active');
+	});
+</script>
+</body>
+</html>
